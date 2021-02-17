@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+       - curl -LJO https://github.com/whitesource/fs-agent-distribution/raw/master/standAlone/wss_agent.sh
+  build:
+    commands:
+      #- mvn clean install
+  post_build:
+    commands:
+      - bash wss_agent.sh -apiKey $ws_api_key -project code-build-test -d .
+artifacts:
+  files:
+     - '**/*'
